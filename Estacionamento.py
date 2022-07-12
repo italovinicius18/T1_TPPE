@@ -20,11 +20,11 @@ class Estacionamento():
         self.horarioNoturnoFinal = horarioNoturnoFinal
         self.retornoContratante = retornoContratante
 
-    def calcula_acesso_horas_cheias(self, acesso, estacionamento):
+    def calcula_acesso_horas_cheias(self, acesso):
         horaEntrada = datetime.strptime(acesso.horaEntrada , "%H:%M")
         horaSaida = datetime.strptime(acesso.horaSaida , "%H:%M")
         horasPemanecidas = horaSaida - horaEntrada 
 
-        valorAcesso = estacionamento.valorHoraCheia * horasPemanecidas.seconds / 3600
+        valorAcesso = self.valorHoraCheia * horasPemanecidas.seconds / 3600
 
         return valorAcesso
