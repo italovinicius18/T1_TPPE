@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 class Estacionamento():
     def __init__(self, nome, capacidade, ocupadas, valorFracao,
                  valorHoraCheia, valorDiariaDiurna, valorDiariaNoturna,
@@ -18,5 +20,11 @@ class Estacionamento():
         self.horarioNoturnoFinal = horarioNoturnoFinal
         self.retornoContratante = retornoContratante
 
-    def calcula_acesso_horas_cheias(self, acesso):
-        return 102
+    def calcula_acesso_horas_cheias(self, acesso, estacionamento):
+        horaEntrada = datetime.strptime(acesso.horaEntrada , "%H:%M")
+        horaSaida = datetime.strptime(acesso.horaSaida , "%H:%M")
+        horasPemanecidas = horaSaida - horaEntrada 
+
+        valorAcesso = estacionamento.valorHoraCheia * horasPemanecidas.seconds / 3600
+
+        return valorAcesso
