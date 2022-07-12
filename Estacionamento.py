@@ -18,5 +18,5 @@ class Estacionamento():
         self.horarioNoturnoFinal = horarioNoturnoFinal
         self.retornoContratante = retornoContratante
 
-    def calcula_valor_acesso(self, acesso):
-        return 1
+    def calcula_acesso_horas_cheias(self, acesso):
+        return 102
