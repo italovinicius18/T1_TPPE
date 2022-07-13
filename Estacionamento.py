@@ -30,5 +30,6 @@ class Estacionamento():
 
 
     def calcula_acesso_noturno(self, acesso):
+        valorAcesso = self.valorDiariaNoturna
 
-        return 54.0
+        return valorAcesso
