@@ -30,15 +30,32 @@ def teste_3_horas_cheias():
 
 @pytest.mark.TesteFuncional
 def teste_1_acesso_noturno():
-    acesso = Acesso('RM3A9', '12/07/2022 21:01', '12/07/2022 06:59', 'acesso noturno', '30.0', '0.5')
+    acesso = Acesso('RM3A9', '12/07/2022 21:01', '13/07/2022 06:59', 'acesso noturno', '30.0', '0.5')
     assert estacionamento_1.calcula_acesso_noturno(acesso) == 54.0
 
 @pytest.mark.TesteFuncional
 def teste_2_acesso_noturno():
-    acesso = Acesso('JF42A', '12/07/2022 11:00', '12/07/2022 03:30', 'acesso noturno', '20.0', '0.6')
+    acesso = Acesso('JF42A', '12/07/2022 11:00', '13/07/2022 03:30', 'acesso noturno', '20.0', '0.6')
     assert estacionamento_2.calcula_acesso_noturno(acesso) == 21.0
 
 @pytest.mark.TesteFuncional
 def teste_3_acesso_noturno():
-    acesso = Acesso('AB64A', '12/07/2022 22:00', '12/07/2022 07:59', 'acesso noturno', '10.0', '0.7')
+    acesso = Acesso('AB64A', '12/07/2022 22:00', '13/07/2022 07:59', 'acesso noturno', '10.0', '0.7')
     assert estacionamento_3.calcula_acesso_noturno(acesso) == 20.0
+
+#------------------------------------ Acesso Diurno ------------------------------------
+
+@pytest.mark.TesteFuncional
+def teste_1_acesso_diurno():
+    acesso = Acesso('RM3A9', '12/07/2022 07:01', '12/07/2022 16:59', 'acesso diurno', '30.0', '0.5')
+    assert estacionamento_1.calcula_acesso_diurno(acesso) == 120.0
+
+@pytest.mark.TesteFuncional
+def teste_2_acesso_diurno():
+    acesso = Acesso('JF42A', '12/07/2022 11:00', '12/07/2022 22:30', 'acesso diurno', '20.0', '0.6')
+    assert estacionamento_2.calcula_acesso_diurno(acesso) == 70.0
+
+@pytest.mark.TesteFuncional
+def teste_3_acesso_diurno():
+    acesso = Acesso('AB64A', '12/07/2022 17:00', '13/07/2022 03:59', 'acesso diurno', '10.0', '0.7')
+    assert estacionamento_3.calcula_acesso_diurno(acesso) == 50.0
