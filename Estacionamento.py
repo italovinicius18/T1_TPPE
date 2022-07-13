@@ -26,5 +26,9 @@ class Estacionamento():
         horasPemanecidas = horaSaida - horaEntrada 
 
         valorAcesso = self.valorHoraCheia * horasPemanecidas.seconds / 3600
-
         return valorAcesso
+
+
+    def calcula_acesso_noturno(self, acesso):
+
+        return 54.0
