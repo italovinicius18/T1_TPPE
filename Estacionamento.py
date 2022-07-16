@@ -54,3 +54,10 @@ class Estacionamento():
         print(valorAcesso)
 
         return valorAcesso
+    
+
+    def calcula_acesso_mensalista(self, acesso):
+        valorAcesso = self.valorAcessoMensalista
+        print(valorAcesso)
+
+        return valorAcesso
