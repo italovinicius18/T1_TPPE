@@ -3,11 +3,11 @@ import pytest
 from Estacionamento import Estacionamento
 from Acesso import Acesso
 
-estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 1.0, 1.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
+estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 1.0, 50.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
 
-estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 1.0, 1.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
+estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 1.0, 60.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
 
-estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 1.0, 1.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
+estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 1.0, 40.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
 
 #------------------------------------ Horas Cheias ------------------------------------
 
@@ -76,3 +76,20 @@ def teste_2_fracao():
 def teste_3_fracao():
     acesso = Acesso('AB64A', '15/07/2022 17:37', '15/07/2022 18:12', 'acesso por fracao', '10.0', '0.7')
     assert estacionamento_3.calcula_acesso_fracao(acesso) == 30.0
+    
+#------------------------------------ Acesso por Evento ------------------------------------
+
+@pytest.mark.TesteFuncional
+def teste_1_evento():
+    acesso = Acesso('RM3A9', '15/07/2022 08:31', '15/07/2022 16:29', 'acesso por evento', '50.0', '0.5')
+    assert estacionamento_1.calcula_acesso_evento(acesso) == 50.0
+
+@pytest.mark.TesteFuncional
+def teste_2_evento():
+    acesso = Acesso('JF42A', '15/07/2022 14:58', '15/07/2022 23:07', 'acesso por evento', '60.0', '0.6')
+    assert estacionamento_2.calcula_acesso_evento(acesso) == 60.0
+
+@pytest.mark.TesteFuncional
+def teste_3_evento():
+    acesso = Acesso('AB64A', '15/07/2022 06:05', '15/07/2022 21:17', 'acesso por evento', '40.0', '0.7')
+    assert estacionamento_3.calcula_acesso_evento(acesso) == 40.0

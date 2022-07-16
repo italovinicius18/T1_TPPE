@@ -47,3 +47,10 @@ class Estacionamento():
         print(valorAcesso)
 
         return valorAcesso
+    
+
+    def calcula_acesso_evento(self, acesso):
+        valorAcesso = self.valorAcessoEvento
+        print(valorAcesso)
+
+        return valorAcesso
