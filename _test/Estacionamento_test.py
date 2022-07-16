@@ -59,3 +59,20 @@ def teste_2_acesso_diurno():
 def teste_3_acesso_diurno():
     acesso = Acesso('AB64A', '12/07/2022 17:00', '13/07/2022 03:59', 'acesso diurno', '10.0', '0.7')
     assert estacionamento_3.calcula_acesso_diurno(acesso) == 50.0
+    
+#------------------------------------ Acesso por Frações ------------------------------------
+
+@pytest.mark.TesteFuncional
+def teste_1_fracao():
+    acesso = Acesso('RM3A9', '15/07/2022 07:01', '15/07/2022 07:46', 'acesso por fracao', '30.0', '0.5')
+    assert estacionamento_1.calcula_acesso_fracao(acesso) == 90.0
+
+@pytest.mark.TesteFuncional
+def teste_2_fracao():
+    acesso = Acesso('JF42A', '15/07/2022 11:23', '15/07/2022 11:34', 'acesso por fracao', '20.0', '0.6')
+    assert estacionamento_2.calcula_acesso_fracao(acesso) == 20.0
+
+@pytest.mark.TesteFuncional
+def teste_3_fracao():
+    acesso = Acesso('AB64A', '15/07/2022 17:37', '15/07/2022 18:12', 'acesso por fracao', '10.0', '0.7')
+    assert estacionamento_3.calcula_acesso_fracao(acesso) == 30.0

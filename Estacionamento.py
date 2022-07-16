@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from math import ceil
 
 class Estacionamento():
     def __init__(self, nome, capacidade, ocupadas, valorFracao,
@@ -31,7 +32,18 @@ class Estacionamento():
 
         return valorAcesso
     
+
     def calcula_acesso_diurno(self, acesso):
         valorAcesso = self.valorDiariaDiurna
+
+        return valorAcesso
+
+
+    def calcula_acesso_fracao(self, acesso):
+        diferenca = acesso.diferenca_tempo()
+        minutes = int(ceil(diferenca.seconds / 900))
+        print("min ", minutes)
+        valorAcesso = self.valorFracao * minutes
+        print(valorAcesso)
 
         return valorAcesso
