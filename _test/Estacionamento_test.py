@@ -3,11 +3,11 @@ import pytest
 from Estacionamento import Estacionamento
 from Acesso import Acesso
 
-estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 600.0, 50.0, '08:00', '18:00', '00:00', '23:59', 0.5)
+estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 600.0, 50.0, '06:00', '22:00', '19:00', '08:00', 0.5)
 
-estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 455.0, 60.0, '08:00', '18:00', '00:00', '23:59', 0.6)
+estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 455.0, 60.0, '00:00', '23:59', '21:00', '07:00', 0.6)
 
-estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 350.0, 40.0, '08:00', '18:00', '00:00', '23:59', 0.7)
+estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 350.0, 40.0, '06:00', '22:00', '20:00', '08:00', 0.7)
 
 #------------------------------------ Horas Cheias ------------------------------------
 
@@ -125,12 +125,12 @@ def teste_2_contratante():
 
 @pytest.mark.TesteFuncional
 def teste_3_contratante():
-    valor_total_contratante = 0
+    valorTotalContratante = 0
     acesso1 = Acesso('RM3A9', '15/07/2022 07:01', '15/07/2022 07:46', 'acesso por fracao', '30.0', '0.7')
     acesso2 = Acesso('AB64A', '15/07/2022 08:31', '15/07/2022 16:29', 'acesso por evento', '50.0', '0.5')
     acesso3 = Acesso('JF42A', '12/07/2022 11:00', '12/07/2022 22:30', 'acesso diurno', '20.0', '0.6')
-    valor_total_contratante += estacionamento_3.calcula_valor_contratante(acesso1, estacionamento_3.calcula_acesso_fracao(acesso1))
-    valor_total_contratante += estacionamento_1.calcula_valor_contratante(acesso2, estacionamento_1.calcula_acesso_evento(acesso2))
-    valor_total_contratante += estacionamento_2.calcula_valor_contratante(acesso3, estacionamento_2.calcula_acesso_diurno(acesso3))
-    assert valor_total_contratante == 88.0
+    valorTotalContratante += estacionamento_3.calcula_valor_contratante(acesso1, estacionamento_3.calcula_acesso_fracao(acesso1))
+    valorTotalContratante += estacionamento_1.calcula_valor_contratante(acesso2, estacionamento_1.calcula_acesso_evento(acesso2))
+    valorTotalContratante += estacionamento_2.calcula_valor_contratante(acesso3, estacionamento_2.calcula_acesso_diurno(acesso3))
+    assert valorTotalContratante == 88.0
 

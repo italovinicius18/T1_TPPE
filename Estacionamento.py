@@ -4,8 +4,8 @@ from math import ceil
 class Estacionamento():
     def __init__(self, nome, capacidade, ocupadas, valorFracao,
                  valorHoraCheia, valorDiariaDiurna, valorDiariaNoturna,
-                 valorAcessoMensalista, valorAcessoEvento, horarioDiurnoInicial, 
-                 horarioDiurnoFinal, horarioNoturnoInicial, horarioNoturnoFinal, retornoContratante):
+                 valorAcessoMensalista, valorAcessoEvento, horarioFuncionamentoInicial, 
+                 horarioFuncionamentoFinal, horarioNoturnoInicial, horarioNoturnoFinal, retornoContratante):
         self.nome = nome
         self.capacidade = capacidade
         self.ocupadas = ocupadas
@@ -15,8 +15,8 @@ class Estacionamento():
         self.valorDiariaNoturna = valorDiariaNoturna
         self.valorAcessoMensalista = valorAcessoMensalista
         self.valorAcessoEvento = valorAcessoEvento
-        self.horarioDiurnoInicial = horarioDiurnoInicial
-        self.horarioDiurnoFinal = horarioDiurnoFinal
+        self.horarioFuncionamentoInicial = horarioFuncionamentoInicial
+        self.horarioFuncionamentoFinal = horarioFuncionamentoFinal
         self.horarioNoturnoInicial = horarioNoturnoInicial
         self.horarioNoturnoFinal = horarioNoturnoFinal
         self.retornoContratante = retornoContratante
