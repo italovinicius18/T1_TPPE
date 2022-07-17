@@ -21,6 +21,7 @@ class Estacionamento():
         self.horarioNoturnoFinal = horarioNoturnoFinal
         self.retornoContratante = retornoContratante
 
+
     def calcula_acesso_horas_cheias(self, acesso):
         diferenca = acesso.diferenca_tempo()
         restoTempo = diferenca.seconds % 3600
@@ -58,3 +59,8 @@ class Estacionamento():
         valorAcesso = self.valorAcessoMensalista
 
         return valorAcesso
+    
+
+    def calcula_valor_contratante(self, acesso, valorTotal):
+
+        return 25.0

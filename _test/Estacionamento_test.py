@@ -3,11 +3,11 @@ import pytest
 from Estacionamento import Estacionamento
 from Acesso import Acesso
 
-estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 600.0, 50.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
+estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 600.0, 50.0, '08:00', '18:00', '00:00', '23:59', 0.5)
 
-estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 455.0, 60.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
+estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 455.0, 60.0, '08:00', '18:00', '00:00', '23:59', 0.6)
 
-estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 350.0, 40.0, '08:00', '18:00', '00:00', '23:59', 'R$ 0,00')
+estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 350.0, 40.0, '08:00', '18:00', '00:00', '23:59', 0.7)
 
 #------------------------------------ Horas Cheias ------------------------------------
 
@@ -110,3 +110,10 @@ def teste_2_mensalista():
 def teste_3_mensalista():
     acesso = Acesso('AB64A', '16/07/2022 06:05', '16/07/2022 21:17', 'acesso mensalista', '40.0', '0.7')
     assert estacionamento_3.calcula_acesso_mensalista(acesso) == 350.0
+
+#------------------------------------ Valor Contratante ------------------------------------
+
+@pytest.mark.TesteFuncional
+def teste_1_contratante():
+    acesso = Acesso('RM3A9', '15/07/2022 08:31', '15/07/2022 16:29', 'acesso por evento', '50.0', '0.5')
+    assert estacionamento_1.calcula_valor_contratante(acesso, 50.0) == 25.0
