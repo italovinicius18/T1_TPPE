@@ -122,3 +122,15 @@ def teste_1_contratante():
 def teste_2_contratante():
     acesso = Acesso('JF42A', '12/07/2022 11:00', '12/07/2022 22:30', 'acesso diurno', '20.0', '0.6')
     assert estacionamento_2.calcula_valor_contratante(acesso, 70.0) == 42.0
+
+@pytest.mark.TesteFuncional
+def teste_3_contratante():
+    valor_total_contratante = 0
+    acesso1 = Acesso('RM3A9', '15/07/2022 07:01', '15/07/2022 07:46', 'acesso por fracao', '30.0', '0.7')
+    acesso2 = Acesso('AB64A', '15/07/2022 08:31', '15/07/2022 16:29', 'acesso por evento', '50.0', '0.5')
+    acesso3 = Acesso('JF42A', '12/07/2022 11:00', '12/07/2022 22:30', 'acesso diurno', '20.0', '0.6')
+    valor_total_contratante += estacionamento_3.calcula_valor_contratante(acesso1, estacionamento_3.calcula_acesso_fracao(acesso1))
+    valor_total_contratante += estacionamento_1.calcula_valor_contratante(acesso2, estacionamento_1.calcula_acesso_evento(acesso2))
+    valor_total_contratante += estacionamento_2.calcula_valor_contratante(acesso3, estacionamento_2.calcula_acesso_diurno(acesso3))
+    assert valor_total_contratante == 88.0
+
