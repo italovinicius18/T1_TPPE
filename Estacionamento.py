@@ -62,5 +62,6 @@ class Estacionamento():
     
 
     def calcula_valor_contratante(self, acesso, valorTotal):
+        valorAcesso = valorTotal * self.retornoContratante
 
-        return 25.0
+        return valorAcesso

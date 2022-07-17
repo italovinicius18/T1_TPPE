@@ -117,3 +117,8 @@ def teste_3_mensalista():
 def teste_1_contratante():
     acesso = Acesso('RM3A9', '15/07/2022 08:31', '15/07/2022 16:29', 'acesso por evento', '50.0', '0.5')
     assert estacionamento_1.calcula_valor_contratante(acesso, 50.0) == 25.0
+
+@pytest.mark.TesteFuncional 
+def teste_2_contratante():
+    acesso = Acesso('JF42A', '12/07/2022 11:00', '12/07/2022 22:30', 'acesso diurno', '20.0', '0.6')
+    assert estacionamento_2.calcula_valor_contratante(acesso, 70.0) == 42.0
