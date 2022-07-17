@@ -23,7 +23,8 @@ class Estacionamento():
 
     def calcula_acesso_horas_cheias(self, acesso):
         diferenca = acesso.diferenca_tempo()
-        valorAcesso = self.valorHoraCheia * diferenca.seconds / 3600
+        restoTempo = diferenca.seconds % 3600
+        valorAcesso = self.valorHoraCheia * ((diferenca.seconds - restoTempo) / 3600)
         return valorAcesso
 
 
@@ -41,23 +42,19 @@ class Estacionamento():
 
     def calcula_acesso_fracao(self, acesso):
         diferenca = acesso.diferenca_tempo()
-        minutes = int(ceil(diferenca.seconds / 900))
-        print("min ", minutes)
+        minutes = int(ceil((diferenca.seconds % 3600) / 900))
         valorAcesso = self.valorFracao * minutes
-        print(valorAcesso)
 
         return valorAcesso
     
 
     def calcula_acesso_evento(self, acesso):
         valorAcesso = self.valorAcessoEvento
-        print(valorAcesso)
 
         return valorAcesso
     
 
     def calcula_acesso_mensalista(self, acesso):
         valorAcesso = self.valorAcessoMensalista
-        print(valorAcesso)
 
         return valorAcesso
