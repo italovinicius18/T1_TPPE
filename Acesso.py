@@ -1,7 +1,21 @@
 from datetime import datetime, timedelta
 
+from Excecoes import DescricaoEmBrancoException, ValorAcessoInvalidoException
+
 class Acesso():
-    def __init__(self, placa, dadoEntrada, dadoSaida, tipoAcesso, valorAcesso, valorContratante):
+    def __init__(self, *args):
+
+        placa, dadoEntrada, dadoSaida, tipoAcesso, valorAcesso, valorContratante = args
+
+        parametros = ['placa', 'dadoEntrada', 'dadoSaida', 'tipoAcesso', 'valorAcesso', 'valorContratante']
+
+        for arg, parametro in zip(args, parametros):
+            if arg == "" or arg == None:
+                raise DescricaoEmBrancoException(f"{parametro} não pode ser vazio ou nulo")
+
+        if valorAcesso == None or valorAcesso < 0 or valorContratante == None or valorContratante <= 0:
+            raise ValorAcessoInvalidoException("Valor do acesso e valor do contratante não podem ser nulos ou negativos")
+
         self.placa = placa
         self.dadoEntrada = dadoEntrada
         self.dadoSaida = dadoSaida

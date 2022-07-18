@@ -6,10 +6,10 @@ dados = {}
 
 def main():
     estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 54.0, 600.0, 50.0, '06:00', '22:00', '19:00', '08:00', 0.5)
-    acesso1 = Acesso('AA00M', '12/07/2022 12:31', '12/07/2022 15:48', 'horas cheias', '30.0', '0.5') # horas cheias e fracao
-    acesso2 = Acesso('JA60F', '12/07/2022 19:17', '13/07/2022 02:19', 'acesso noturno', '30.0', '0.5') # noturno
-    acesso3 = Acesso('RE52G', '12/07/2022 08:30', '12/07/2022 17:48', 'acesso diurno', '30.0', '0.5') # diurno
-    acesso4 = Acesso('RE52G', '12/07/2022 23:30', '13/07/2022 05:00', 'acesso noturno', '30.0', '0.5') # diurno
+    acesso1 = Acesso('AA00M', '12/07/2022 12:31', '12/07/2022 15:48', 'horas cheias', 30.0, 0.5) # horas cheias e fracao
+    acesso2 = Acesso('JA60F', '12/07/2022 19:17', '13/07/2022 02:19', 'acesso noturno', 30.0, 0.5) # noturno
+    acesso3 = Acesso('RE52G', '12/07/2022 08:30', '12/07/2022 17:48', 'acesso diurno', 30.0, 0.5) # diurno
+    acesso4 = Acesso('RE52G', '12/07/2022 23:30', '13/07/2022 05:00', 'acesso noturno', 30.0, 0.5) # diurno
 
     print('Acesso1: R$', definir_tipo_acesso(acesso1, estacionamento_1))
     print('Acesso2: R$', definir_tipo_acesso(acesso2, estacionamento_1))
