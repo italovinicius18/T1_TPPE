@@ -16,7 +16,7 @@ Caso não tenha o pytest instalado, instale-o usando o comando:
     pip install pytest
 ```
 
-## Uso 
+## Uso (Windows)
 
 ```
 Para rodar o programa, basta, na pasta raiz do repositório, digitar o comando:

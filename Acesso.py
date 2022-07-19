@@ -5,9 +5,9 @@ from Excecoes import DescricaoEmBrancoException, ValorAcessoInvalidoException
 class Acesso():
     def __init__(self, *args):
 
-        placa, dadoEntrada, dadoSaida, tipoAcesso, valorAcesso, valorContratante = args
+        placa, dadoEntrada, dadoSaida, valorAcesso, valorContratante = args
 
-        parametros = ['placa', 'dadoEntrada', 'dadoSaida', 'tipoAcesso', 'valorAcesso', 'valorContratante']
+        parametros = ['placa', 'dadoEntrada', 'dadoSaida', 'valorAcesso', 'valorContratante']
 
         for arg, parametro in zip(args, parametros):
             if arg == "" or arg == None:
@@ -19,7 +19,6 @@ class Acesso():
         self.placa = placa
         self.dadoEntrada = dadoEntrada
         self.dadoSaida = dadoSaida
-        self.tipoAcesso = tipoAcesso
         self.valorAcesso = valorAcesso
         self.valorContratante = valorContratante
 
