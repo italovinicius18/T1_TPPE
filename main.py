@@ -80,20 +80,20 @@ def main():
     while True:
         menu()
 
-def definir_tipo_acesso(acesso, estacionamento):
-    tempoIntervalo = acesso.diferenca_tempo()
-    horaEntrada = datetime.strptime(acesso.dadoEntrada , "%d/%m/%Y %H:%M")
-    horaSaida = datetime.strptime(acesso.dadoSaida , "%d/%m/%Y %H:%M")
-    horaNoturnoFixoEntrada = datetime.strptime(estacionamento.horarioNoturnoInicial , "%H:%M")
-    horaNoturnoFixoSaida = datetime.strptime(estacionamento.horarioNoturnoFinal , "%H:%M")
-    
+def formataHora(dado):
+    formato = "%d/%m/%Y %H:%M"
+    return datetime.strptime(dado, formato)
+
+def formataHoraNoturno(horario):
+    formato = "%H:%M"
+    return datetime.strptime(horario, formato)
+
+def calculaValorTotal(acesso, estacionamento, tempoIntervalo, horaEntrada, horaNoturnoFixoEntrada, horaSaida, horaNoturnoFixoSaida):
     if (horaEntrada.hour >= horaNoturnoFixoEntrada.hour) and (horaEntrada.hour <= 23) and (horaSaida.hour < horaNoturnoFixoSaida.hour):
-        valorTotal = estacionamento.calcula_acesso_noturno(acesso)
-        return valorTotal, estacionamento.calcula_valor_contratante(acesso, valorTotal)
+        return estacionamento.calcula_acesso_noturno(acesso)
     else:
         if tempoIntervalo.seconds >= 9*3600:
-            valorTotal = estacionamento.calcula_acesso_diurno(acesso)
-            return valorTotal, estacionamento.calcula_valor_contratante(acesso, valorTotal)
+            return estacionamento.calcula_acesso_diurno(acesso)
         else:
             if tempoIntervalo.seconds >= 1*3600:
                 horasCheias = estacionamento.calcula_acesso_horas_cheias(acesso)
@@ -101,8 +101,18 @@ def definir_tipo_acesso(acesso, estacionamento):
             elif tempoIntervalo.seconds < 3600:
                 horasCheias = 0
                 horasFracao = estacionamento.calcula_acesso_fracao(acesso)
-            valorTotal = horasCheias + horasFracao
-            return valorTotal, estacionamento.calcula_valor_contratante(acesso, valorTotal)
+            return horasCheias + horasFracao
+    
+
+def definir_tipo_acesso(acesso, estacionamento):
+    tempoIntervalo = acesso.diferenca_tempo()
+    horaEntrada = formataHora(acesso.dadoEntrada)
+    horaSaida = formataHora(acesso.dadoSaida)
+    horaNoturnoFixoEntrada = formataHoraNoturno(estacionamento.horarioNoturnoInicial)
+    horaNoturnoFixoSaida = formataHoraNoturno(estacionamento.horarioNoturnoFinal)
+
+    valorTotal = calculaValorTotal(acesso, estacionamento, tempoIntervalo, horaEntrada, horaNoturnoFixoEntrada, horaSaida, horaNoturnoFixoSaida)
+    return valorTotal, estacionamento.calcula_valor_contratante(acesso, valorTotal)
 
 if __name__ == "__main__":
     main()
