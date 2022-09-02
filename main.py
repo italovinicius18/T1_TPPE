@@ -65,7 +65,6 @@ def menu():
     print('3 - Sair')
     opcao = int(input('Digite a opção desejada: '))
 
-# 01/02/2022 08:30
     if opcao == 1:
         classe = Cadastrar_acesso()
         classe.define_acesso()

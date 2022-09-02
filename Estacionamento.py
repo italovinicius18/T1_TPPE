@@ -1,7 +1,12 @@
 from datetime import datetime, timedelta
 from math import ceil
 
+horaEmSegundo = 3600
+quartoDeHoraEmSegundo = 900
+qtdFracaoHora = 4
+
 class Estacionamento():
+
     def __init__(self, nome, capacidade, ocupadas, valorFracao,
                  valorHoraCheia, valorDiariaDiurna, valorDiariaNoturna,
                  valorAcessoMensalista, valorAcessoEvento, horarioFuncionamentoInicial, 
@@ -23,17 +28,20 @@ class Estacionamento():
 
 
     def calcula_acesso_horas_cheias(self, acesso):
+        global horaEmSegundo
         diferenca = acesso.diferenca_tempo()
-        restoTempo = diferenca.seconds % 3600
-        valorAcesso = self.valorHoraCheia * ((diferenca.seconds - restoTempo) / 3600)
+        restoTempo = diferenca.seconds % horaEmSegundo
+        valorAcesso = self.valorHoraCheia * ((diferenca.seconds - restoTempo) / horaEmSegundo)
        
         return valorAcesso
 
-    # 2*3500
     def calcula_acesso_fracao(self, acesso):
+        global horaEmSegundo
+        global quartoDeHoraEmSegundo
+        global qtdFracaoHora
         diferenca = acesso.diferenca_tempo()
-        minutes = int(ceil((diferenca.seconds % 3600) / 900))
-        if minutes == 4:
+        minutes = int(ceil((diferenca.seconds % horaEmSegundo) / quartoDeHoraEmSegundo))
+        if minutes == qtdFracaoHora:
             valorAcesso = self.valorHoraCheia
         else:
             valorAcesso = self.valorFracao * minutes
