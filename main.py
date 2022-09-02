@@ -12,41 +12,43 @@ estacionamento_1 = Estacionamento('Estacionamento 1', 100, 0, 30, 102.0, 120.0, 
 estacionamento_2 = Estacionamento('Estacionamento 2', 200, 0, 20, 72.0, 70.0, 21.0, 455.0, 60.0, '00:00', '23:59', '21:00', '07:00', 0.6)
 estacionamento_3 = Estacionamento('Estacionamento 3', 400, 0, 10, 40.0, 50.0, 20.0, 350.0, 40.0, '06:00', '22:00', '20:00', '08:00', 0.7)
     
-    
-def cadastrar_acesso():
-    estacionamento = int(input('Escolha o estacionamento (1, 2 ou 3): '))
-    placa = input('Digite a placa do veículo: ')
-    dadoEntrada = input('Digite a data e hora de entrada(dd/MM/yyyy hh:mm): ')
-    dadoSaida = input('Digite a data e hora de saída(dd/MM/yyyy hh:mm): ')
-    acessoEvento = input('Você está acessando o estacionamento para evento? (s/n): ')
-    acessoMensalista = input('Você paga mensalidade no estacionamento? (s/n): ')
+def calcula_estacionamento(acesso, num_estacionamento, acessoEvento, acessoMensalista):
+    if(num_estacionamento==1):
+        estacionamento = estacionamento_1
+    elif(num_estacionamento==2):
+        estacionamento = estacionamento_2
+    else:
+        estacionamento = estacionamento_3
 
-    if estacionamento == 1:
-        acesso = Acesso(placa, dadoEntrada, dadoSaida, 30.0, 0.5)
-        if acessoEvento.lower() == 'n' and acessoMensalista.lower() == 'n':
-            dados['Estacionamento 1'].append(definir_tipo_acesso(acesso, estacionamento_1)[1])
-        elif acessoEvento.lower() == 's' and acessoMensalista.lower() == 'n':
-            dados['Estacionamento 1'].append(estacionamento_1.calcula_valor_contratante(acesso, estacionamento_1.calcula_acesso_evento(acesso)))
-        elif acessoEvento.lower() == 'n' and acessoMensalista.lower() == 's':
-            dados['Estacionamento 1'].append(estacionamento_1.calcula_valor_contratante(acesso, estacionamento_1.calcula_acesso_mensalista(acesso)))
-            
-    elif estacionamento == 2:
-        acesso = Acesso(placa, dadoEntrada, dadoSaida, 20.0, 0.6)
-        if acessoEvento.lower() == 'n' and acessoMensalista.lower() == 'n':
-            dados['Estacionamento 2'].append(definir_tipo_acesso(acesso, estacionamento_2)[1])
-        elif acessoEvento.lower() == 's' and acessoMensalista.lower() == 'n':
-            dados['Estacionamento 2'].append(estacionamento_2.calcula_valor_contratante(acesso, estacionamento_2.calcula_acesso_evento(acesso)))
-        elif acessoEvento.lower() == 'n' and acessoMensalista.lower() == 's':
-            dados['Estacionamento 2'].append(estacionamento_2.calcula_valor_contratante(acesso, estacionamento_2.calcula_acesso_mensalista(acesso)))
+    if acessoEvento.lower() == 'n' and acessoMensalista.lower() == 'n':
+        dados[f'Estacionamento {num_estacionamento}'].append(definir_tipo_acesso(acesso, estacionamento)[1])
+    elif acessoEvento.lower() == 's' and acessoMensalista.lower() == 'n':
+        dados[f'Estacionamento {num_estacionamento}'].append(estacionamento.calcula_valor_contratante(acesso, estacionamento.calcula_acesso_evento(acesso)))
+    elif acessoEvento.lower() == 'n' and acessoMensalista.lower() == 's':
+        dados[f'Estacionamento {num_estacionamento}'].append(estacionamento.calcula_valor_contratante(acesso, estacionamento.calcula_acesso_mensalista(acesso)))
 
-    elif estacionamento == 3:
-        acesso = Acesso(placa, dadoEntrada, dadoSaida, 10.0, 0.7)
-        if acessoEvento.lower() == 'n' and acessoMensalista.lower() == 'n':
-            dados['Estacionamento 3'].append(definir_tipo_acesso(acesso, estacionamento_3)[1])
-        elif acessoEvento.lower() == 's' and acessoMensalista.lower() == 'n':
-            dados['Estacionamento 3'].append(estacionamento_3.calcula_valor_contratante(acesso, estacionamento_3.calcula_acesso_evento(acesso)))
-        elif acessoEvento.lower() == 'n' and acessoMensalista.lower() == 's':
-            dados['Estacionamento 3'].append(estacionamento_3.calcula_valor_contratante(acesso, estacionamento_3.calcula_acesso_mensalista(acesso)))
+class Cadastrar_acesso():
+    def __init__(self):
+        self.__estacionamento = int(input('Escolha o estacionamento (1, 2 ou 3): '))
+        self.__placa = input('Digite a placa do veículo: ')
+        self.__dadoEntrada = input('Digite a data e hora de entrada(dd/MM/yyyy hh:mm): ')
+        self.__dadoSaida = input('Digite a data e hora de saída(dd/MM/yyyy hh:mm): ')
+        self.__acessoEvento = input('Você está acessando o estacionamento para evento? (s/n): ')
+        self.__acessoMensalista = input('Você paga mensalidade no estacionamento? (s/n): ')
+
+
+    def define_acesso(self):
+        if self.__estacionamento == 1:
+            acesso = Acesso(self.__placa, self.__dadoEntrada, self.__dadoSaida, 30.0, 0.5)
+            calcula_estacionamento(acesso, self.__estacionamento, self.__acessoEvento, self.__acessoMensalista)
+                     
+        elif self.__estacionamento == 2:
+            acesso = Acesso(self.__placa, self.__dadoEntrada, self.__dadoSaida, 20.0, 0.6)
+            calcula_estacionamento(acesso, self.__estacionamento, self.__acessoEvento, self.__acessoMensalista)
+
+        elif self.__estacionamento == 3:
+            acesso = Acesso(self.__placa, self.__dadoEntrada, self.__dadoSaida, 10.0, 0.7)
+            calcula_estacionamento(acesso, self.__estacionamento, self.__acessoEvento, self.__acessoMensalista)
 
 
 def apurar_acesso():
@@ -63,8 +65,10 @@ def menu():
     print('3 - Sair')
     opcao = int(input('Digite a opção desejada: '))
 
+# 01/02/2022 08:30
     if opcao == 1:
-        cadastrar_acesso()
+        classe = Cadastrar_acesso()
+        classe.define_acesso()
         
     elif opcao == 2:
         apurar_acesso()
@@ -74,7 +78,6 @@ def menu():
         exit()
     else:
         print('Opcao invalida, escolha outra opcao')
-
 
 def main():
     while True:
