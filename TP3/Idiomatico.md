@@ -59,3 +59,7 @@ def calcular_media(self, notas):
 def calcular_media(self, notas):
     return sum(notas) / len(notas)
 ```
+
+### Autor
+
+Ian Fillipe Pontes Ferreira
